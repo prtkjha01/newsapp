@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import Navbar from "./components/Navbar";
+import News from "./components/News";
+import LoadingBar from "react-top-loading-bar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
+  const pageSize = 9;
+
+  const [progress, setProgress] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [category, setCategory] = useState("general");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Navbar setSearchQuery={setSearchQuery} setCategory={setCategory} />
+        <LoadingBar
+          color="#f11946"
+          progress={progress}
+          // onLoaderFinished={() => setProgress(0)}
+        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <News
+                setProgress={setProgress}
+                key={category}
+                pageSize={pageSize}
+                country="in"
+                category={category}
+                searchQuery={searchQuery}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-}
-
+};
 export default App;
