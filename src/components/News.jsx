@@ -10,7 +10,7 @@ const News = (props) => {
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
 
-  const apiKey = "6baa4d8b0d084109a27c3a2bb16e6b29";
+  const apiKey = "6a1d4f2afd3b4379bd04f56e72a8bb6d";
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
