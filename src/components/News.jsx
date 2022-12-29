@@ -50,13 +50,11 @@ const News = (props) => {
     let url;
 
     if (props?.searchQuery?.length === 0) {
-      url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${
-        props.category
-      }&apiKey=${apiKey}&page=${page + 1}&pageSize=${props.pageSize}`;
+      url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category
+        }&apiKey=${apiKey}&page=${page + 1}&pageSize=${props.pageSize}`;
     } else {
-      url = `https://newsapi.org/v2/everything?q=${props.searchQuery}&sortBy=popularity&apiKey=${apiKey}&page=${
-        page + 1
-      }&pageSize=${props.pageSize}`;
+      url = `https://newsapi.org/v2/everything?q=${props.searchQuery}&sortBy=popularity&apiKey=${apiKey}&page=${page + 1
+        }&pageSize=${props.pageSize}`;
     }
 
     let data = await fetch(url);
@@ -79,6 +77,7 @@ const News = (props) => {
         next={fetchMoreData}
         hasMore={articles.length !== totalResults}
         loader={<Spinner />}
+
       >
         <div className="container">
           <div className="row">
